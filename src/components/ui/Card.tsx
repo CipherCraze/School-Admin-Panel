@@ -12,16 +12,14 @@ export function Card({ children, className, hover = false, glass = false, ...pro
   return (
     <div 
       className={cn(
-        'rounded-2xl border border-secondary-200/50 bg-white/80 backdrop-blur-sm shadow-soft',
+        'rounded-xl sm:rounded-2xl border border-secondary-200/50 bg-white/80 backdrop-blur-sm shadow-soft',
         glass && 'glass-effect',
         hover && 'card-hover cursor-pointer',
         className
       )}
       {...props}
     >
-      <div className="p-6">
-        {children}
-      </div>
+      {children}
     </div>
   )
 }
@@ -33,7 +31,7 @@ interface CardHeaderProps {
 
 export function CardHeader({ children, className }: CardHeaderProps) {
   return (
-    <div className={cn('mb-6', className)}>
+    <div className={cn('mb-4 sm:mb-6', className)}>
       {children}
     </div>
   )
@@ -48,7 +46,7 @@ interface CardTitleProps {
 export function CardTitle({ children, className, gradient = false }: CardTitleProps) {
   return (
     <h3 className={cn(
-      'text-xl font-bold text-secondary-900',
+      'text-lg sm:text-xl font-bold text-secondary-900',
       gradient && 'gradient-text',
       className
     )}>
@@ -64,7 +62,7 @@ interface CardContentProps {
 
 export function CardContent({ children, className }: CardContentProps) {
   return (
-    <div className={cn('text-secondary-700', className)}>
+    <div className={cn('text-secondary-700 p-4 sm:p-6', className)}>
       {children}
     </div>
   )

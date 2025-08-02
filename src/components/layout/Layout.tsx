@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import { 
@@ -8,7 +8,9 @@ import {
   ChartBarIcon,
   ArrowRightOnRectangleIcon,
   Cog6ToothIcon,
-  SparklesIcon
+  SparklesIcon,
+  Bars3Icon,
+  XMarkIcon
 } from '@heroicons/react/24/outline'
 
 interface LayoutProps {
@@ -18,6 +20,7 @@ interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const handleLogout = () => {
     logout()
@@ -34,9 +37,41 @@ export function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-secondary-50 via-white to-primary-50">
+      {/* Mobile menu overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Mobile header */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-secondary-200/50 shadow-lg">
+        <div className="flex items-center justify-between p-4">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-blue-600 rounded-lg flex items-center justify-center">
+              <SparklesIcon className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <h1 className="text-lg font-bold gradient-text">SpeakGenie</h1>
+              <p className="text-xs text-secondary-500 font-medium">Admin Panel</p>
+            </div>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="p-2 rounded-lg text-secondary-600 hover:bg-secondary-100 transition-colors"
+          >
+            <Bars3Icon className="w-6 h-6" />
+          </button>
+        </div>
+      </div>
+
       {/* Sidebar */}
-      <div className="fixed inset-y-0 left-0 z-50 w-72 bg-white/80 backdrop-blur-xl border-r border-secondary-200/50 shadow-large">
-        <div className="flex h-20 items-center justify-center border-b border-secondary-200/50">
+      <div className={`fixed inset-y-0 left-0 z-50 w-72 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      } bg-white/80 backdrop-blur-xl border-r border-secondary-200/50 shadow-large`}>
+        {/* Sidebar header */}
+        <div className="flex h-20 items-center justify-between px-6 border-b border-secondary-200/50">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-r from-primary-600 to-blue-600 rounded-xl flex items-center justify-center">
               <SparklesIcon className="w-6 h-6 text-white" />
@@ -46,6 +81,13 @@ export function Layout({ children }: LayoutProps) {
               <p className="text-xs text-secondary-500 font-medium">Admin Panel</p>
             </div>
           </div>
+          {/* Close button for mobile */}
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-1 rounded-lg text-secondary-500 hover:bg-secondary-100 transition-colors"
+          >
+            <XMarkIcon className="w-5 h-5" />
+          </button>
         </div>
         
         <nav className="mt-8 px-6">
@@ -54,6 +96,7 @@ export function Layout({ children }: LayoutProps) {
               <li key={item.name}>
                 <NavLink
                   to={item.href}
+                  onClick={() => setSidebarOpen(false)} // Close sidebar on mobile when clicking nav item
                   className={({ isActive }) =>
                     `group flex items-center rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 ${
                       isActive
@@ -96,9 +139,9 @@ export function Layout({ children }: LayoutProps) {
       </div>
 
       {/* Main content */}
-      <div className="pl-72">
-        <main className="py-8 animate-fade-in">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="lg:pl-72 pt-20 lg:pt-0">
+        <main className="py-4 lg:py-8 animate-fade-in">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             {children}
           </div>
         </main>

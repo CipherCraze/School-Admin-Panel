@@ -25,76 +25,76 @@ const engagementData = [
 
 export function AnalyticsPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-900">Analytics & Reports</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Analytics & Reports</h1>
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <Card>
-          <CardContent>
+          <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Learning Hours</p>
-                <p className="text-3xl font-bold text-gray-900">2,847</p>
-                <p className="text-sm text-green-600">+12% from last month</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-600">Total Learning Hours</p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900">2,847</p>
+                <p className="text-xs sm:text-sm text-green-600">+12% from last month</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent>
+          <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Lessons Completed</p>
-                <p className="text-3xl font-bold text-gray-900">1,892</p>
-                <p className="text-sm text-green-600">+18% from last month</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-600">Lessons Completed</p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900">1,892</p>
+                <p className="text-xs sm:text-sm text-green-600">+18% from last month</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent>
+          <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Average Session Time</p>
-                <p className="text-3xl font-bold text-gray-900">24 min</p>
-                <p className="text-sm text-green-600">+8% from last month</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-600">Average Session Time</p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900">24 min</p>
+                <p className="text-xs sm:text-sm text-green-600">+8% from last month</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent>
+          <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Active Students</p>
-                <p className="text-3xl font-bold text-gray-900">1,156</p>
-                <p className="text-sm text-green-600">+5% from last month</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-600">Active Students</p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900">1,156</p>
+                <p className="text-xs sm:text-sm text-green-600">+5% from last month</p>
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
         {/* Performance Distribution */}
         <Card>
           <CardHeader>
             <CardTitle>Student Performance Distribution</CardTitle>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie
                   data={performanceData}
                   cx="50%"
                   cy="50%"
-                  outerRadius={100}
+                  outerRadius={80}
                   dataKey="value"
                   label={({ value }) => `${value}%`}
                 >
@@ -109,10 +109,10 @@ export function AnalyticsPage() {
               {performanceData.map((item, index) => (
                 <div key={index} className="flex items-center">
                   <div
-                    className="w-3 h-3 rounded-full mr-2"
+                    className="w-3 h-3 rounded-full mr-2 flex-shrink-0"
                     style={{ backgroundColor: item.color }}
                   />
-                  <span className="text-sm text-gray-600">{item.name}</span>
+                  <span className="text-xs sm:text-sm text-gray-600 truncate">{item.name}</span>
                 </div>
               ))}
             </div>
@@ -125,16 +125,16 @@ export function AnalyticsPage() {
             <CardTitle>Average Performance by Skill Area</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {skillAnalytics.map((skill, index) => (
                 <div key={index} className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium text-gray-700">{skill.skill}</span>
-                    <span className="text-sm font-bold text-gray-900">{skill.average}%</span>
+                    <span className="text-xs sm:text-sm font-medium text-gray-700 truncate">{skill.skill}</span>
+                    <span className="text-xs sm:text-sm font-bold text-gray-900 flex-shrink-0">{skill.average}%</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3 relative overflow-hidden">
+                  <div className="w-full bg-gray-200 rounded-full h-2 sm:h-3 relative overflow-hidden">
                     <div 
-                      className="h-3 rounded-full transition-all duration-1000 ease-out"
+                      className="h-2 sm:h-3 rounded-full transition-all duration-1000 ease-out"
                       style={{ 
                         width: `${skill.average}%`,
                         background: `linear-gradient(90deg, ${skill.color}dd, ${skill.color}aa)`
@@ -146,35 +146,36 @@ export function AnalyticsPage() {
             </div>
             
             {/* Alternative: Simple Bar Chart */}
-            <div className="mt-8">
-              <ResponsiveContainer width="100%" height={250}>
+            <div className="mt-6 sm:mt-8">
+              <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={skillAnalytics} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                   <XAxis 
                     dataKey="skill" 
                     stroke="#64748b" 
-                    fontSize={12}
+                    fontSize={10}
                     angle={-45}
                     textAnchor="end"
-                    height={60}
+                    height={50}
                   />
                   <YAxis 
                     domain={[0, 100]} 
                     stroke="#64748b" 
-                    fontSize={12}
+                    fontSize={10}
                   />
                   <Tooltip 
                     contentStyle={{ 
                       backgroundColor: 'rgba(255, 255, 255, 0.95)', 
                       border: '1px solid #e2e8f0',
                       borderRadius: '12px',
-                      boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)'
+                      boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+                      fontSize: '12px'
                     }}
                     formatter={(value) => [`${value}%`, 'Average Score']}
                   />
                   <Bar 
                     dataKey="average" 
-                    radius={[4, 4, 0, 0]}
+                    radius={[3, 3, 0, 0]}
                     name="Average Score"
                   >
                     {skillAnalytics.map((entry, index) => (

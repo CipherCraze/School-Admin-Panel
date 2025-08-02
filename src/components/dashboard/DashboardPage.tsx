@@ -66,38 +66,38 @@ export function DashboardPage() {
   ]
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-6 sm:space-y-8 animate-fade-in">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-4xl font-bold gradient-text">Dashboard</h1>
-          <p className="mt-2 text-secondary-600">Welcome back! Here's what's happening with your schools.</p>
+          <h1 className="text-3xl sm:text-4xl font-bold gradient-text">Dashboard</h1>
+          <p className="mt-2 text-secondary-600 text-sm sm:text-base">Welcome back! Here's what's happening with your schools.</p>
         </div>
         <div className="mt-4 sm:mt-0">
-          <div className="text-sm text-secondary-500 bg-white/80 px-4 py-2 rounded-xl backdrop-blur-sm border border-secondary-200">
+          <div className="text-xs sm:text-sm text-secondary-500 bg-white/80 px-3 sm:px-4 py-2 rounded-xl backdrop-blur-sm border border-secondary-200">
             Last updated: {new Date().toLocaleString()}
           </div>
         </div>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {statCards.map((stat, index) => (
           <Card key={index} hover className="overflow-hidden animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
-            <CardContent>
+            <CardContent className="p-4 sm:p-6">
               <div className="flex items-center justify-between">
-                <div className="flex-1">
-                  <p className="text-sm font-semibold text-secondary-600 uppercase tracking-wide">{stat.title}</p>
-                  <p className="text-3xl font-bold text-secondary-900 mt-2">{stat.value}</p>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs sm:text-sm font-semibold text-secondary-600 uppercase tracking-wide truncate">{stat.title}</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-secondary-900 mt-2">{stat.value}</p>
                   <div className="mt-2 flex items-center">
-                    <span className="text-sm font-medium text-success-600">{stat.change}</span>
+                    <span className="text-xs sm:text-sm font-medium text-success-600">{stat.change}</span>
                     <span className="text-xs text-secondary-500 ml-1">from last month</span>
                   </div>
                 </div>
-                <div className={`relative`}>
+                <div className={`relative flex-shrink-0`}>
                   <div className={`absolute inset-0 bg-gradient-to-r ${stat.bgColor} rounded-xl opacity-20`}></div>
-                  <div className={`relative w-12 h-12 bg-gradient-to-r ${stat.color} rounded-xl flex items-center justify-center shadow-lg`}>
-                    <stat.icon className="w-6 h-6 text-white" />
+                  <div className={`relative w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${stat.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                    <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </div>
                 </div>
               </div>
@@ -107,15 +107,15 @@ export function DashboardPage() {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2">
         {/* Enrollment Trend */}
         <Card className="animate-slide-up" style={{ animationDelay: '400ms' }}>
           <CardHeader>
             <CardTitle gradient>Student Enrollment Trend</CardTitle>
-            <p className="text-sm text-secondary-600">Monthly growth in student registrations</p>
+            <p className="text-xs sm:text-sm text-secondary-600">Monthly growth in student registrations</p>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={320}>
+            <ResponsiveContainer width="100%" height={280}>
               <LineChart data={mockData.enrollmentTrend}>
                 <defs>
                   <linearGradient id="enrollmentGradient" x1="0" y1="0" x2="0" y2="1">
@@ -124,24 +124,25 @@ export function DashboardPage() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis dataKey="month" stroke="#64748b" fontSize={12} />
-                <YAxis stroke="#64748b" fontSize={12} />
+                <XAxis dataKey="month" stroke="#64748b" fontSize={10} />
+                <YAxis stroke="#64748b" fontSize={10} />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'rgba(255, 255, 255, 0.95)', 
                     border: '1px solid #e2e8f0',
                     borderRadius: '12px',
-                    boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)'
+                    boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+                    fontSize: '12px'
                   }} 
                 />
                 <Line 
                   type="monotone" 
                   dataKey="students" 
                   stroke="#0ea5e9" 
-                  strokeWidth={3}
+                  strokeWidth={2}
                   fill="url(#enrollmentGradient)"
-                  dot={{ fill: '#0ea5e9', strokeWidth: 3, r: 6 }}
-                  activeDot={{ r: 8, fill: '#0284c7' }}
+                  dot={{ fill: '#0ea5e9', strokeWidth: 2, r: 4 }}
+                  activeDot={{ r: 6, fill: '#0284c7' }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -152,10 +153,10 @@ export function DashboardPage() {
         <Card className="animate-slide-up" style={{ animationDelay: '500ms' }}>
           <CardHeader>
             <CardTitle gradient>Average Accuracy by Class</CardTitle>
-            <p className="text-sm text-secondary-600">Performance metrics across different grade levels</p>
+            <p className="text-xs sm:text-sm text-secondary-600">Performance metrics across different grade levels</p>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={320}>
+            <ResponsiveContainer width="100%" height={280}>
               <BarChart data={mockData.performanceByClass}>
                 <defs>
                   <linearGradient id="performanceGradient" x1="0" y1="0" x2="0" y2="1">
@@ -164,20 +165,21 @@ export function DashboardPage() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis dataKey="class" stroke="#64748b" fontSize={12} />
-                <YAxis stroke="#64748b" fontSize={12} />
+                <XAxis dataKey="class" stroke="#64748b" fontSize={10} />
+                <YAxis stroke="#64748b" fontSize={10} />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'rgba(255, 255, 255, 0.95)', 
                     border: '1px solid #e2e8f0',
                     borderRadius: '12px',
-                    boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)'
+                    boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+                    fontSize: '12px'
                   }} 
                 />
                 <Bar 
                   dataKey="accuracy" 
                   fill="url(#performanceGradient)"
-                  radius={[8, 8, 0, 0]}
+                  radius={[6, 6, 0, 0]}
                 />
               </BarChart>
             </ResponsiveContainer>
@@ -189,10 +191,10 @@ export function DashboardPage() {
       <Card className="animate-slide-up" style={{ animationDelay: '600ms' }}>
         <CardHeader>
           <CardTitle gradient>Recent Activity</CardTitle>
-          <p className="text-sm text-secondary-600">Latest updates and notifications</p>
+          <p className="text-xs sm:text-sm text-secondary-600">Latest updates and notifications</p>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {[
               { action: 'New school registered', details: 'Greenwood Elementary School', time: '2 hours ago', type: 'school' },
               { action: 'Student enrollment milestone', details: '1,250 total students reached', time: '4 hours ago', type: 'milestone' },
