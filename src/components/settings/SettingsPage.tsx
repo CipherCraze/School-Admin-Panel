@@ -4,16 +4,17 @@ import { Input } from '../ui/Input'
 
 export function SettingsPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Settings</h1>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
         {/* Profile Settings */}
         <Card>
           <CardHeader>
-            <CardTitle>Profile Settings</CardTitle>
+            <CardTitle className="text-lg sm:text-xl">Profile Settings</CardTitle>
+            <p className="text-xs sm:text-sm text-gray-600 mt-1">Update your personal information and contact details</p>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -28,7 +29,8 @@ export function SettingsPage() {
         {/* System Settings */}
         <Card>
           <CardHeader>
-            <CardTitle>System Settings</CardTitle>
+            <CardTitle className="text-lg sm:text-xl">System Settings</CardTitle>
+            <p className="text-xs sm:text-sm text-gray-600 mt-1">Configure system preferences and default options</p>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -61,7 +63,8 @@ export function SettingsPage() {
         {/* Notification Settings */}
         <Card>
           <CardHeader>
-            <CardTitle>Notification Preferences</CardTitle>
+            <CardTitle className="text-lg sm:text-xl">Notification Preferences</CardTitle>
+            <p className="text-xs sm:text-sm text-gray-600 mt-1">Manage how and when you receive notifications</p>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -93,7 +96,8 @@ export function SettingsPage() {
         {/* Data Management */}
         <Card>
           <CardHeader>
-            <CardTitle>Data Management</CardTitle>
+            <CardTitle className="text-lg sm:text-xl">Data Management</CardTitle>
+            <p className="text-xs sm:text-sm text-gray-600 mt-1">Export data and manage system backups</p>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">

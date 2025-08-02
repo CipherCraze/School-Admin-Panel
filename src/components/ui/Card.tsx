@@ -31,7 +31,7 @@ interface CardHeaderProps {
 
 export function CardHeader({ children, className }: CardHeaderProps) {
   return (
-    <div className={cn('mb-4 sm:mb-6', className)}>
+    <div className={cn('p-4 sm:p-6 pb-0', className)}>
       {children}
     </div>
   )
@@ -62,7 +62,7 @@ interface CardContentProps {
 
 export function CardContent({ children, className }: CardContentProps) {
   return (
-    <div className={cn('text-secondary-700 p-4 sm:p-6', className)}>
+    <div className={cn('text-secondary-700 p-4 sm:p-6 pt-0', className)}>
       {children}
     </div>
   )

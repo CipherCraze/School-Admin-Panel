@@ -85,7 +85,8 @@ export function AnalyticsPage() {
         {/* Performance Distribution */}
         <Card>
           <CardHeader>
-            <CardTitle>Student Performance Distribution</CardTitle>
+            <CardTitle className="text-lg sm:text-xl">Student Performance Distribution</CardTitle>
+            <p className="text-xs sm:text-sm text-gray-600 mt-1">Overall accuracy breakdown across all students</p>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={250}>
@@ -122,7 +123,8 @@ export function AnalyticsPage() {
         {/* Skill Areas Performance */}
         <Card>
           <CardHeader>
-            <CardTitle>Average Performance by Skill Area</CardTitle>
+            <CardTitle className="text-lg sm:text-xl">Average Performance by Skill Area</CardTitle>
+            <p className="text-xs sm:text-sm text-gray-600 mt-1">Individual skill performance metrics and improvements</p>
           </CardHeader>
           <CardContent>
             <div className="space-y-3 sm:space-y-4">
@@ -185,14 +187,14 @@ export function AnalyticsPage() {
                 </BarChart>
               </ResponsiveContainer>
             </div>
-            <div className="mt-6 p-4 bg-secondary-50 rounded-xl">
-              <h4 className="text-sm font-semibold text-secondary-800 mb-3">Month-over-Month Improvement</h4>
+            <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-secondary-50 rounded-xl">
+              <h4 className="text-xs sm:text-sm font-semibold text-secondary-800 mb-3">Month-over-Month Improvement</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {skillAnalytics.map((skill, index) => (
-                  <div key={index} className="flex justify-between items-center p-3 bg-white rounded-lg border border-secondary-200">
-                    <span className="text-sm font-medium text-secondary-700">{skill.skill}</span>
+                  <div key={index} className="flex justify-between items-center p-2 sm:p-3 bg-white rounded-lg border border-secondary-200">
+                    <span className="text-xs sm:text-sm font-medium text-secondary-700">{skill.skill}</span>
                     <div className="flex items-center">
-                      <span className="text-sm font-bold text-success-600">+{skill.improvement}%</span>
+                      <span className="text-xs sm:text-sm font-bold text-success-600">+{skill.improvement}%</span>
                       <div className="ml-2 w-2 h-2 bg-success-500 rounded-full"></div>
                     </div>
                   </div>
@@ -206,18 +208,27 @@ export function AnalyticsPage() {
       {/* Engagement Trends */}
       <Card>
         <CardHeader>
-          <CardTitle>Student Engagement Trends</CardTitle>
+          <CardTitle className="text-lg sm:text-xl">Student Engagement Trends</CardTitle>
+          <p className="text-xs sm:text-sm text-gray-600 mt-1">Monthly engagement patterns and learning time</p>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={400}>
+          <ResponsiveContainer width="100%" height={300}>
             <BarChart data={engagementData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis yAxisId="left" />
-              <YAxis yAxisId="right" orientation="right" />
-              <Tooltip />
-              <Bar yAxisId="left" dataKey="avgTime" fill="#3b82f6" name="Avg. Time (minutes)" />
-              <Bar yAxisId="right" dataKey="lessons" fill="#10b981" name="Lessons Completed" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+              <XAxis dataKey="month" stroke="#64748b" fontSize={10} />
+              <YAxis yAxisId="left" stroke="#64748b" fontSize={10} />
+              <YAxis yAxisId="right" orientation="right" stroke="#64748b" fontSize={10} />
+              <Tooltip 
+                contentStyle={{ 
+                  backgroundColor: 'rgba(255, 255, 255, 0.95)', 
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '12px',
+                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+                  fontSize: '12px'
+                }}
+              />
+              <Bar yAxisId="left" dataKey="avgTime" fill="#3b82f6" name="Avg. Time (minutes)" radius={[2, 2, 0, 0]} />
+              <Bar yAxisId="right" dataKey="lessons" fill="#10b981" name="Lessons Completed" radius={[2, 2, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </CardContent>
@@ -226,10 +237,11 @@ export function AnalyticsPage() {
       {/* Top Performing Schools */}
       <Card>
         <CardHeader>
-          <CardTitle>Top Performing Schools</CardTitle>
+          <CardTitle className="text-lg sm:text-xl">Top Performing Schools</CardTitle>
+          <p className="text-xs sm:text-sm text-gray-600 mt-1">Schools ranked by overall student accuracy</p>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {[
               { name: 'Riverside High School', accuracy: 92, students: 456, improvement: '+5%' },
               { name: 'Greenwood Elementary', accuracy: 89, students: 245, improvement: '+8%' },
@@ -237,19 +249,19 @@ export function AnalyticsPage() {
               { name: 'Oakwood International', accuracy: 85, students: 312, improvement: '+3%' },
               { name: 'Pine Valley School', accuracy: 83, students: 278, improvement: '+7%' }
             ].map((school, index) => (
-              <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 bg-gray-50 rounded-lg space-y-2 sm:space-y-0">
                 <div className="flex items-center">
-                  <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-sm font-medium text-primary-700">#{index + 1}</span>
+                  <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <span className="text-xs sm:text-sm font-medium text-primary-700">#{index + 1}</span>
                   </div>
-                  <div>
-                    <p className="font-medium text-gray-900">{school.name}</p>
-                    <p className="text-sm text-gray-500">{school.students} students</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-medium text-gray-900 text-sm sm:text-base truncate">{school.name}</p>
+                    <p className="text-xs sm:text-sm text-gray-500">{school.students} students</p>
                   </div>
                 </div>
-                <div className="text-right">
-                  <p className="font-medium text-gray-900">{school.accuracy}% accuracy</p>
-                  <p className="text-sm text-green-600">{school.improvement}</p>
+                <div className="text-left sm:text-right">
+                  <p className="font-medium text-gray-900 text-sm sm:text-base">{school.accuracy}% accuracy</p>
+                  <p className="text-xs sm:text-sm text-green-600">{school.improvement}</p>
                 </div>
               </div>
             ))}

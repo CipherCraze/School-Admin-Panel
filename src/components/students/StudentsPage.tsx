@@ -85,9 +85,9 @@ export function StudentsPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-900">Students Management</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Students Management</h1>
       </div>
 
       {/* Search */}
@@ -104,7 +104,8 @@ export function StudentsPage() {
       {/* Students Table */}
       <Card>
         <CardHeader>
-          <CardTitle>All Students ({filteredStudents.length})</CardTitle>
+          <CardTitle className="text-lg sm:text-xl">All Students ({filteredStudents.length})</CardTitle>
+          <p className="text-xs sm:text-sm text-gray-600 mt-1">Complete list of enrolled students with performance metrics</p>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
@@ -176,20 +177,20 @@ export function StudentsPage() {
 
       {/* Student Detail Modal */}
       {selectedStudent && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[80vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">{selectedStudent.name}</h2>
-              <Button variant="outline" onClick={() => setSelectedStudent(null)}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 sm:mb-6 space-y-2 sm:space-y-0">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{selectedStudent.name}</h2>
+              <Button variant="outline" onClick={() => setSelectedStudent(null)} className="w-full sm:w-auto">
                 Close
               </Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               {/* Basic Info */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Basic Information</CardTitle>
+                  <CardTitle className="text-base sm:text-lg">Basic Information</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
@@ -216,7 +217,7 @@ export function StudentsPage() {
               {/* Performance Overview */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Performance Overview</CardTitle>
+                  <CardTitle className="text-base sm:text-lg">Performance Overview</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
@@ -245,7 +246,8 @@ export function StudentsPage() {
               {/* Skill Areas */}
               <Card className="md:col-span-2">
                 <CardHeader>
-                  <CardTitle>Skill Areas Performance</CardTitle>
+                  <CardTitle className="text-base sm:text-lg">Skill Areas Performance</CardTitle>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-1">Individual performance across different language skills</p>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">

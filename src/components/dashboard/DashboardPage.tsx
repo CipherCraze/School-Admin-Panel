@@ -66,14 +66,14 @@ export function DashboardPage() {
   ]
 
   return (
-    <div className="space-y-6 sm:space-y-8 animate-fade-in">
+    <div className="space-y-4 sm:space-y-6 lg:space-y-8 animate-fade-in">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-3xl sm:text-4xl font-bold gradient-text">Dashboard</h1>
-          <p className="mt-2 text-secondary-600 text-sm sm:text-base">Welcome back! Here's what's happening with your schools.</p>
+      <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-w-0 flex-1">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text">Dashboard</h1>
+          <p className="mt-1 sm:mt-2 text-secondary-600 text-sm sm:text-base">Welcome back! Here's what's happening with your schools.</p>
         </div>
-        <div className="mt-4 sm:mt-0">
+        <div className="flex-shrink-0">
           <div className="text-xs sm:text-sm text-secondary-500 bg-white/80 px-3 sm:px-4 py-2 rounded-xl backdrop-blur-sm border border-secondary-200">
             Last updated: {new Date().toLocaleString()}
           </div>
@@ -107,15 +107,15 @@ export function DashboardPage() {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:gap-8 lg:grid-cols-2">
         {/* Enrollment Trend */}
         <Card className="animate-slide-up" style={{ animationDelay: '400ms' }}>
           <CardHeader>
-            <CardTitle gradient>Student Enrollment Trend</CardTitle>
-            <p className="text-xs sm:text-sm text-secondary-600">Monthly growth in student registrations</p>
+            <CardTitle gradient className="text-lg sm:text-xl">Student Enrollment Trend</CardTitle>
+            <p className="text-xs sm:text-sm text-secondary-600 mt-1">Monthly growth in student registrations</p>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={280}>
+            <ResponsiveContainer width="100%" height={250} className="sm:h-[280px]">
               <LineChart data={mockData.enrollmentTrend}>
                 <defs>
                   <linearGradient id="enrollmentGradient" x1="0" y1="0" x2="0" y2="1">
@@ -124,8 +124,8 @@ export function DashboardPage() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis dataKey="month" stroke="#64748b" fontSize={10} />
-                <YAxis stroke="#64748b" fontSize={10} />
+                <XAxis dataKey="month" stroke="#64748b" fontSize={10} className="text-xs" />
+                <YAxis stroke="#64748b" fontSize={10} className="text-xs" />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'rgba(255, 255, 255, 0.95)', 
@@ -152,11 +152,11 @@ export function DashboardPage() {
         {/* Performance by Class */}
         <Card className="animate-slide-up" style={{ animationDelay: '500ms' }}>
           <CardHeader>
-            <CardTitle gradient>Average Accuracy by Class</CardTitle>
-            <p className="text-xs sm:text-sm text-secondary-600">Performance metrics across different grade levels</p>
+            <CardTitle gradient className="text-lg sm:text-xl">Average Accuracy by Class</CardTitle>
+            <p className="text-xs sm:text-sm text-secondary-600 mt-1">Performance metrics across different grade levels</p>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={280}>
+            <ResponsiveContainer width="100%" height={250} className="sm:h-[280px]">
               <BarChart data={mockData.performanceByClass}>
                 <defs>
                   <linearGradient id="performanceGradient" x1="0" y1="0" x2="0" y2="1">
@@ -165,8 +165,8 @@ export function DashboardPage() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis dataKey="class" stroke="#64748b" fontSize={10} />
-                <YAxis stroke="#64748b" fontSize={10} />
+                <XAxis dataKey="class" stroke="#64748b" fontSize={10} className="text-xs" />
+                <YAxis stroke="#64748b" fontSize={10} className="text-xs" />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'rgba(255, 255, 255, 0.95)', 
@@ -190,8 +190,8 @@ export function DashboardPage() {
       {/* Recent Activity */}
       <Card className="animate-slide-up" style={{ animationDelay: '600ms' }}>
         <CardHeader>
-          <CardTitle gradient>Recent Activity</CardTitle>
-          <p className="text-xs sm:text-sm text-secondary-600">Latest updates and notifications</p>
+          <CardTitle gradient className="text-lg sm:text-xl">Recent Activity</CardTitle>
+          <p className="text-xs sm:text-sm text-secondary-600 mt-1">Latest updates and notifications</p>
         </CardHeader>
         <CardContent>
           <div className="space-y-3 sm:space-y-4">
@@ -201,25 +201,25 @@ export function DashboardPage() {
               { action: 'Performance report generated', details: 'Monthly accuracy report for March', time: '1 day ago', type: 'report' },
               { action: 'New admin user created', details: 'admin@bluehills.edu', time: '2 days ago', type: 'user' }
             ].map((activity, index) => (
-              <div key={index} className="flex items-center justify-between py-4 px-4 rounded-xl bg-secondary-50/50 border border-secondary-100 hover:bg-secondary-50 transition-colors duration-200">
+              <div key={index} className="flex flex-col sm:flex-row sm:items-center justify-between py-3 sm:py-4 px-3 sm:px-4 rounded-xl bg-secondary-50/50 border border-secondary-100 hover:bg-secondary-50 transition-colors duration-200 space-y-2 sm:space-y-0">
                 <div className="flex items-center">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mr-4 ${
+                  <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0 ${
                     activity.type === 'school' ? 'bg-blue-100 text-blue-600' :
                     activity.type === 'milestone' ? 'bg-emerald-100 text-emerald-600' :
                     activity.type === 'report' ? 'bg-purple-100 text-purple-600' :
                     'bg-amber-100 text-amber-600'
                   }`}>
-                    {activity.type === 'school' ? <AcademicCapIcon className="w-5 h-5" /> :
-                     activity.type === 'milestone' ? <TrophyIcon className="w-5 h-5" /> :
-                     activity.type === 'report' ? <ChartBarIcon className="w-5 h-5" /> :
-                     <UserGroupIcon className="w-5 h-5" />}
+                    {activity.type === 'school' ? <AcademicCapIcon className="w-4 h-4 sm:w-5 sm:h-5" /> :
+                     activity.type === 'milestone' ? <TrophyIcon className="w-4 h-4 sm:w-5 sm:h-5" /> :
+                     activity.type === 'report' ? <ChartBarIcon className="w-4 h-4 sm:w-5 sm:h-5" /> :
+                     <UserGroupIcon className="w-4 h-4 sm:w-5 sm:h-5" />}
                   </div>
-                  <div>
-                    <p className="text-sm font-semibold text-secondary-900">{activity.action}</p>
-                    <p className="text-sm text-secondary-600">{activity.details}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs sm:text-sm font-semibold text-secondary-900 truncate">{activity.action}</p>
+                    <p className="text-xs sm:text-sm text-secondary-600 truncate">{activity.details}</p>
                   </div>
                 </div>
-                <span className="text-xs text-secondary-400 bg-white px-3 py-1 rounded-full">{activity.time}</span>
+                <span className="text-xs text-secondary-400 bg-white px-2 sm:px-3 py-1 rounded-full self-start sm:self-auto flex-shrink-0">{activity.time}</span>
               </div>
             ))}
           </div>
