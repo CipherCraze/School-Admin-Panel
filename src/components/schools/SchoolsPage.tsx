@@ -51,6 +51,7 @@ export function SchoolsPage() {
   const [schools] = useState<School[]>(mockSchools)
   const [searchTerm, setSearchTerm] = useState('')
   const [showAddForm, setShowAddForm] = useState(false)
+  const [selectedSchool, setSelectedSchool] = useState<School | null>(null)
 
   const filteredSchools = schools.filter(school =>
     school.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -115,7 +116,12 @@ export function SchoolsPage() {
                   <p className="text-lg font-semibold text-gray-900">{school.totalStudents}</p>
                 </div>
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 pt-4">
-                  <Button size="sm" variant="outline" className="w-full sm:w-auto">
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="w-full sm:w-auto"
+                    onClick={() => setSelectedSchool(school)}
+                  >
                     <EyeIcon className="w-4 h-4 mr-1" />
                     View
                   </Button>
@@ -149,6 +155,146 @@ export function SchoolsPage() {
               <Button onClick={() => setShowAddForm(false)} className="w-full sm:w-auto">
                 Add School
               </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* School Detail Modal */}
+      {selectedSchool && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 sm:mb-6 space-y-2 sm:space-y-0">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{selectedSchool.name}</h2>
+              <Button variant="outline" onClick={() => setSelectedSchool(null)} className="w-full sm:w-auto">
+                Close
+              </Button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              {/* Basic School Information */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-base sm:text-lg">School Information</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm font-medium text-gray-500">School Name</p>
+                      <p className="text-sm text-gray-900">{selectedSchool.name}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-500">Board</p>
+                      <p className="text-sm text-gray-900">{selectedSchool.board}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-500">Status</p>
+                      <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                        selectedSchool.status === 'active' 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-red-100 text-red-800'
+                      }`}>
+                        {selectedSchool.status}
+                      </span>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-500">Created Date</p>
+                      <p className="text-sm text-gray-900">
+                        {new Date(selectedSchool.createdAt).toLocaleDateString()}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Admin Contact Information */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-base sm:text-lg">Admin Contact</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm font-medium text-gray-500">Name</p>
+                      <p className="text-sm text-gray-900">{selectedSchool.adminContact.name}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-500">Email</p>
+                      <p className="text-sm text-gray-900">{selectedSchool.adminContact.email}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-500">Phone</p>
+                      <p className="text-sm text-gray-900">{selectedSchool.adminContact.phone}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* School Statistics */}
+              <Card className="md:col-span-2">
+                <CardHeader>
+                  <CardTitle className="text-base sm:text-lg">School Statistics</CardTitle>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-1">Overview of school performance and enrollment</p>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="text-center p-4 bg-blue-50 rounded-lg">
+                      <div className="text-2xl font-bold text-blue-600">{selectedSchool.totalStudents}</div>
+                      <p className="text-sm font-medium text-blue-800">Total Students</p>
+                    </div>
+                    <div className="text-center p-4 bg-green-50 rounded-lg">
+                      <div className="text-2xl font-bold text-green-600">
+                        {Math.round(selectedSchool.totalStudents / 8)}
+                      </div>
+                      <p className="text-sm font-medium text-green-800">Avg per Class</p>
+                    </div>
+                    <div className="text-center p-4 bg-purple-50 rounded-lg">
+                      <div className="text-2xl font-bold text-purple-600">85%</div>
+                      <p className="text-sm font-medium text-purple-800">Avg Performance</p>
+                    </div>
+                    <div className="text-center p-4 bg-amber-50 rounded-lg">
+                      <div className="text-2xl font-bold text-amber-600">8</div>
+                      <p className="text-sm font-medium text-amber-800">Active Classes</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Recent Activity */}
+              <Card className="md:col-span-2">
+                <CardHeader>
+                  <CardTitle className="text-base sm:text-lg">Recent Activity</CardTitle>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-1">Latest updates and activities for this school</p>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900">New student enrollment</p>
+                        <p className="text-xs text-gray-500">15 new students enrolled this month</p>
+                      </div>
+                      <span className="text-xs text-gray-400">2 days ago</span>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900">Performance update</p>
+                        <p className="text-xs text-gray-500">Monthly performance reports generated</p>
+                      </div>
+                      <span className="text-xs text-gray-400">1 week ago</span>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900">Admin contact updated</p>
+                        <p className="text-xs text-gray-500">Contact information verified and updated</p>
+                      </div>
+                      <span className="text-xs text-gray-400">2 weeks ago</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
