@@ -175,46 +175,46 @@ export function LeaderboardPage() {
   return (
     <div className="space-y-4 sm:space-y-6 lg:space-y-8">
       {/* Header */}
-      <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col space-y-3 sm:space-y-4 lg:space-y-0 lg:flex-row lg:items-center lg:justify-between">
         <div className="min-w-0 flex-1">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text flex items-center">
-            <TrophyIcon className="w-8 h-8 mr-3 text-amber-500" />
-            🏆 School Leaderboard
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold gradient-text flex items-center">
+            <TrophyIcon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 mr-2 sm:mr-3 text-amber-500 flex-shrink-0" />
+            <span className="break-words">🏆 School Leaderboard</span>
           </h1>
-          <p className="mt-1 sm:mt-2 text-secondary-600 text-sm sm:text-base">
+          <p className="mt-1 sm:mt-2 text-secondary-600 text-xs sm:text-sm lg:text-base">
             Celebrating our top performers and encouraging healthy competition
           </p>
         </div>
         <div className="flex-shrink-0">
-          <div className="text-xs sm:text-sm text-secondary-500 bg-white/80 px-3 sm:px-4 py-2 rounded-xl backdrop-blur-sm border border-secondary-200">
-            Updated: {new Date().toLocaleString()}
+          <div className="text-xs sm:text-sm text-secondary-500 bg-white/80 px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 rounded-lg lg:rounded-xl backdrop-blur-sm border border-secondary-200">
+            Updated: {new Date().toLocaleDateString()}
           </div>
         </div>
       </div>
 
       {/* Top 3 Podium */}
       <Card className="animate-slide-up overflow-hidden">
-        <CardHeader className="bg-gradient-to-r from-amber-50 to-yellow-50 border-b border-amber-200">
-          <CardTitle gradient className="text-lg sm:text-xl text-center">
+        <CardHeader className="bg-gradient-to-r from-amber-50 to-yellow-50 border-b border-amber-200 p-3 sm:p-4 lg:p-6">
+          <CardTitle gradient className="text-base sm:text-lg lg:text-xl text-center">
             🥇 Champions Podium 🥇
           </CardTitle>
           <p className="text-xs sm:text-sm text-center text-amber-700 mt-1">This month's top 3 achievers</p>
         </CardHeader>
-        <CardContent className="p-6">
-          <div className="flex flex-col md:flex-row items-end justify-center space-y-4 md:space-y-0 md:space-x-8">
+        <CardContent className="p-3 sm:p-4 lg:p-6">
+          <div className="flex flex-col space-y-4 md:flex-row md:items-end md:justify-center md:space-y-0 md:space-x-4 lg:space-x-8">
             {/* 2nd Place */}
             {filteredStudents[1] && (
               <div className="flex flex-col items-center order-2 md:order-1">
-                <div className="relative mb-4">
-                  <div className="w-20 h-20 rounded-full border-4 border-gray-400 overflow-hidden shadow-lg">
+                <div className="relative mb-3 sm:mb-4">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-gray-400 overflow-hidden shadow-lg">
                     <img src={filteredStudents[1].photo} alt={filteredStudents[1].name} className="w-full h-full object-cover" />
                   </div>
-                  <div className="absolute -top-2 -right-2 text-2xl">🥈</div>
+                  <div className="absolute -top-2 -right-2 text-xl sm:text-2xl">🥈</div>
                 </div>
-                <div className="bg-gradient-to-t from-gray-400 to-gray-500 text-white px-6 py-8 rounded-t-xl text-center min-h-[120px] flex flex-col justify-end">
-                  <h3 className="font-bold text-sm mb-1">{filteredStudents[1].name}</h3>
+                <div className="bg-gradient-to-t from-gray-400 to-gray-500 text-white px-4 sm:px-6 py-6 sm:py-8 rounded-t-xl text-center min-h-[100px] sm:min-h-[120px] flex flex-col justify-end w-full max-w-[200px]">
+                  <h3 className="font-bold text-xs sm:text-sm mb-1 truncate">{filteredStudents[1].name}</h3>
                   <p className="text-xs opacity-90 mb-2">{filteredStudents[1].class}</p>
-                  <p className="text-lg font-bold">{filteredStudents[1].points} pts</p>
+                  <p className="text-base sm:text-lg font-bold">{filteredStudents[1].points} pts</p>
                 </div>
               </div>
             )}
@@ -222,19 +222,19 @@ export function LeaderboardPage() {
             {/* 1st Place */}
             {filteredStudents[0] && (
               <div className="flex flex-col items-center order-1 md:order-2">
-                <div className="relative mb-4">
-                  <div className="w-24 h-24 rounded-full border-4 border-yellow-400 overflow-hidden shadow-xl animate-pulse">
+                <div className="relative mb-3 sm:mb-4">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-yellow-400 overflow-hidden shadow-xl animate-pulse">
                     <img src={filteredStudents[0].photo} alt={filteredStudents[0].name} className="w-full h-full object-cover" />
                   </div>
-                  <div className="absolute -top-3 -right-3 text-3xl">🏆</div>
+                  <div className="absolute -top-2 sm:-top-3 -right-2 sm:-right-3 text-2xl sm:text-3xl">🏆</div>
                 </div>
-                <div className="bg-gradient-to-t from-yellow-400 to-yellow-500 text-white px-6 py-10 rounded-t-xl text-center min-h-[140px] flex flex-col justify-end">
-                  <h3 className="font-bold text-base mb-1">{filteredStudents[0].name}</h3>
+                <div className="bg-gradient-to-t from-yellow-400 to-yellow-500 text-white px-4 sm:px-6 py-8 sm:py-10 rounded-t-xl text-center min-h-[120px] sm:min-h-[140px] flex flex-col justify-end w-full max-w-[200px]">
+                  <h3 className="font-bold text-sm sm:text-base mb-1 truncate">{filteredStudents[0].name}</h3>
                   <p className="text-xs opacity-90 mb-2">{filteredStudents[0].class}</p>
-                  <p className="text-xl font-bold">{filteredStudents[0].points} pts</p>
+                  <p className="text-lg sm:text-xl font-bold">{filteredStudents[0].points} pts</p>
                   <div className="flex justify-center mt-2 space-x-1">
                     {filteredStudents[0].badges.map((badge: string, idx: number) => (
-                      <span key={idx} className="text-sm">{badge}</span>
+                      <span key={idx} className="text-xs sm:text-sm">{badge}</span>
                     ))}
                   </div>
                 </div>
@@ -244,16 +244,16 @@ export function LeaderboardPage() {
             {/* 3rd Place */}
             {filteredStudents[2] && (
               <div className="flex flex-col items-center order-3 md:order-3">
-                <div className="relative mb-4">
-                  <div className="w-20 h-20 rounded-full border-4 border-orange-400 overflow-hidden shadow-lg">
+                <div className="relative mb-3 sm:mb-4">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-orange-400 overflow-hidden shadow-lg">
                     <img src={filteredStudents[2].photo} alt={filteredStudents[2].name} className="w-full h-full object-cover" />
                   </div>
-                  <div className="absolute -top-2 -right-2 text-2xl">🥉</div>
+                  <div className="absolute -top-2 -right-2 text-xl sm:text-2xl">🥉</div>
                 </div>
-                <div className="bg-gradient-to-t from-orange-400 to-orange-500 text-white px-6 py-8 rounded-t-xl text-center min-h-[120px] flex flex-col justify-end">
-                  <h3 className="font-bold text-sm mb-1">{filteredStudents[2].name}</h3>
+                <div className="bg-gradient-to-t from-orange-400 to-orange-500 text-white px-4 sm:px-6 py-6 sm:py-8 rounded-t-xl text-center min-h-[100px] sm:min-h-[120px] flex flex-col justify-end w-full max-w-[200px]">
+                  <h3 className="font-bold text-xs sm:text-sm mb-1 truncate">{filteredStudents[2].name}</h3>
                   <p className="text-xs opacity-90 mb-2">{filteredStudents[2].class}</p>
-                  <p className="text-lg font-bold">{filteredStudents[2].points} pts</p>
+                  <p className="text-base sm:text-lg font-bold">{filteredStudents[2].points} pts</p>
                 </div>
               </div>
             )}
@@ -263,71 +263,74 @@ export function LeaderboardPage() {
 
       {/* Filters */}
       <Card>
-        <CardContent className="p-4 sm:p-6">
-          <div className="flex flex-col lg:flex-row items-stretch lg:items-center space-y-3 lg:space-y-0 lg:space-x-4">
+        <CardContent className="p-3 sm:p-4 lg:p-6">
+          <div className="flex flex-col space-y-3 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-4">
             <div className="relative flex-1">
               <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary-400" />
               <Input
                 placeholder="Search students..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
+                className="pl-10 text-sm"
               />
             </div>
-            <select 
-              value={selectedClass}
-              onChange={(e) => setSelectedClass(e.target.value)}
-              className="px-3 py-2 border border-secondary-200 rounded-lg text-sm bg-white min-w-[120px]"
-            >
-              <option value="all">All Classes</option>
-              {classes.map((cls) => (
-                <option key={cls} value={cls}>{cls}</option>
-              ))}
-            </select>
-            <select 
-              value={timeFrame}
-              onChange={(e) => setTimeFrame(e.target.value)}
-              className="px-3 py-2 border border-secondary-200 rounded-lg text-sm bg-white min-w-[120px]"
-            >
-              <option value="monthly">This Month</option>
-              <option value="weekly">This Week</option>
-              <option value="alltime">All Time</option>
-            </select>
-            <Button variant="outline" className="flex items-center">
-              <FunnelIcon className="w-4 h-4 mr-2" />
-              More Filters
-            </Button>
+            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 lg:space-x-4">
+              <select 
+                value={selectedClass}
+                onChange={(e) => setSelectedClass(e.target.value)}
+                className="px-3 py-2 border border-secondary-200 rounded-lg text-sm bg-white w-full sm:w-auto sm:min-w-[120px]"
+              >
+                <option value="all">All Classes</option>
+                {classes.map((cls) => (
+                  <option key={cls} value={cls}>{cls}</option>
+                ))}
+              </select>
+              <select 
+                value={timeFrame}
+                onChange={(e) => setTimeFrame(e.target.value)}
+                className="px-3 py-2 border border-secondary-200 rounded-lg text-sm bg-white w-full sm:w-auto sm:min-w-[120px]"
+              >
+                <option value="monthly">This Month</option>
+                <option value="weekly">This Week</option>
+                <option value="alltime">All Time</option>
+              </select>
+              <Button variant="outline" className="flex items-center justify-center w-full sm:w-auto text-sm">
+                <FunnelIcon className="w-4 h-4 mr-2" />
+                <span className="hidden sm:inline">More Filters</span>
+                <span className="sm:hidden">Filters</span>
+              </Button>
+            </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Full Leaderboard */}
       <Card>
-        <CardHeader>
-          <CardTitle gradient className="text-lg sm:text-xl">Complete Rankings</CardTitle>
+        <CardHeader className="p-3 sm:p-4 lg:p-6">
+          <CardTitle gradient className="text-base sm:text-lg lg:text-xl">Complete Rankings</CardTitle>
           <p className="text-xs sm:text-sm text-secondary-600 mt-1">All students ranked by points earned this month</p>
         </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
+        <CardContent className="p-3 sm:p-4 lg:p-6">
+          <div className="space-y-2 sm:space-y-3">
             {filteredStudents.map((student) => (
-              <div key={student.id} className={`flex items-center p-4 rounded-xl transition-all duration-300 hover:scale-[1.02] ${
+              <div key={student.id} className={`flex items-center p-3 sm:p-4 rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-[1.01] ${
                 student.rank <= 3 ? 'bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200' : 'bg-secondary-50 border border-secondary-200'
               }`}>
                 {/* Rank */}
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4 ${getRankBackgroundColor(student.rank)}`}>
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white font-bold mr-3 sm:mr-4 flex-shrink-0 ${getRankBackgroundColor(student.rank)}`}>
                   {student.rank <= 3 ? 
-                    <span className="text-lg">{student.rank === 1 ? '🏆' : student.rank === 2 ? '🥈' : '🥉'}</span> :
-                    <span>#{student.rank}</span>
+                    <span className="text-sm sm:text-lg">{student.rank === 1 ? '🏆' : student.rank === 2 ? '🥈' : '🥉'}</span> :
+                    <span className="text-xs sm:text-sm">#{student.rank}</span>
                   }
                 </div>
 
                 {/* Student Photo */}
-                <div className="relative mr-4">
+                <div className="relative mr-3 sm:mr-4 flex-shrink-0">
                   <img 
                     src={student.photo} 
                     alt={student.name}
-                    className={`w-12 h-12 rounded-full object-cover ${
-                      student.rank <= 3 ? 'border-3 border-amber-400' : 'border-2 border-secondary-300'
+                    className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover ${
+                      student.rank <= 3 ? 'border-2 sm:border-3 border-amber-400' : 'border-2 border-secondary-300'
                     }`}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -341,40 +344,42 @@ export function LeaderboardPage() {
 
                 {/* Student Info */}
                 <div className="flex-1 min-w-0">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                      <h3 className="font-bold text-secondary-900 truncate">{student.name}</h3>
-                      <p className="text-sm text-secondary-600">{student.class}</p>
+                  <div className="flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-sm sm:text-base text-secondary-900 truncate">{student.name}</h3>
+                      <p className="text-xs sm:text-sm text-secondary-600">{student.class}</p>
                     </div>
-                    <div className="flex items-center space-x-4 mt-2 sm:mt-0">
+                    <div className="flex items-center justify-between sm:justify-end space-x-2 sm:space-x-4">
                       <div className="text-center">
-                        <p className="text-lg font-bold text-amber-600">{student.points}</p>
+                        <p className="text-sm sm:text-lg font-bold text-amber-600">{student.points}</p>
                         <p className="text-xs text-secondary-500">points</p>
                       </div>
                       <div className={`px-2 py-1 rounded-full text-xs font-medium ${getPerformanceColor(student.accuracy)}`}>
                         {student.accuracy}%
                       </div>
-                      <div className="flex items-center text-sm text-secondary-600">
-                        <FireIcon className="w-4 h-4 mr-1 text-orange-500" />
+                      <div className="flex items-center text-xs sm:text-sm text-secondary-600">
+                        <FireIcon className="w-3 h-3 sm:w-4 sm:h-4 mr-1 text-orange-500" />
                         {student.streak}
                       </div>
                     </div>
                   </div>
                   
-                  {/* Badges */}
-                  <div className="flex items-center mt-2 space-x-2">
+                  {/* Badges and Details Button */}
+                  <div className="flex items-center justify-between mt-2">
                     <div className="flex space-x-1">
                       {student.badges.map((badge: string, idx: number) => (
-                        <span key={idx} className="text-sm">{badge}</span>
+                        <span key={idx} className="text-xs sm:text-sm">{badge}</span>
                       ))}
                     </div>
                     <Button 
                       size="sm" 
                       variant="outline"
                       onClick={() => setSelectedStudent(student)}
+                      className="text-xs px-2 py-1 sm:px-3 sm:py-1.5"
                     >
                       <EyeIcon className="w-3 h-3 mr-1" />
-                      Details
+                      <span className="hidden xs:inline">Details</span>
+                      <span className="xs:hidden">View</span>
                     </Button>
                   </div>
                 </div>
@@ -385,115 +390,115 @@ export function LeaderboardPage() {
       </Card>
 
       {/* Achievement Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <Card>
-          <CardContent className="p-4 text-center">
-            <div className="text-3xl mb-2">👑</div>
-            <p className="text-sm font-bold text-secondary-900">Current Champion</p>
-            <p className="text-xs text-secondary-600">Ahan Kumar</p>
-            <p className="text-lg font-bold text-amber-600">830 points</p>
+          <CardContent className="p-3 sm:p-4 text-center">
+            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">👑</div>
+            <p className="text-xs sm:text-sm font-bold text-secondary-900">Current Champion</p>
+            <p className="text-xs text-secondary-600 truncate">Ahan Kumar</p>
+            <p className="text-sm sm:text-lg font-bold text-amber-600">830 points</p>
           </CardContent>
         </Card>
         
         <Card>
-          <CardContent className="p-4 text-center">
-            <div className="text-3xl mb-2">🔥</div>
-            <p className="text-sm font-bold text-secondary-900">Longest Streak</p>
-            <p className="text-xs text-secondary-600">Ahan Kumar</p>
-            <p className="text-lg font-bold text-orange-600">15 days</p>
+          <CardContent className="p-3 sm:p-4 text-center">
+            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">🔥</div>
+            <p className="text-xs sm:text-sm font-bold text-secondary-900">Longest Streak</p>
+            <p className="text-xs text-secondary-600 truncate">Ahan Kumar</p>
+            <p className="text-sm sm:text-lg font-bold text-orange-600">15 days</p>
           </CardContent>
         </Card>
         
         <Card>
-          <CardContent className="p-4 text-center">
-            <div className="text-3xl mb-2">⚡</div>
-            <p className="text-sm font-bold text-secondary-900">Most Active</p>
-            <p className="text-xs text-secondary-600">Ahan Kumar</p>
-            <p className="text-lg font-bold text-blue-600">68 lessons</p>
+          <CardContent className="p-3 sm:p-4 text-center">
+            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">⚡</div>
+            <p className="text-xs sm:text-sm font-bold text-secondary-900">Most Active</p>
+            <p className="text-xs text-secondary-600 truncate">Ahan Kumar</p>
+            <p className="text-sm sm:text-lg font-bold text-blue-600">68 lessons</p>
           </CardContent>
         </Card>
         
         <Card>
-          <CardContent className="p-4 text-center">
-            <div className="text-3xl mb-2">🎯</div>
-            <p className="text-sm font-bold text-secondary-900">Highest Accuracy</p>
-            <p className="text-xs text-secondary-600">Ahan Kumar</p>
-            <p className="text-lg font-bold text-green-600">96%</p>
+          <CardContent className="p-3 sm:p-4 text-center">
+            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">🎯</div>
+            <p className="text-xs sm:text-sm font-bold text-secondary-900">Highest Accuracy</p>
+            <p className="text-xs text-secondary-600 truncate">Ahan Kumar</p>
+            <p className="text-sm sm:text-lg font-bold text-green-600">96%</p>
           </CardContent>
         </Card>
       </div>
 
       {/* Student Detail Modal */}
       {selectedStudent && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-6 space-y-4 sm:space-y-0">
-              <div className="flex items-center space-x-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 sm:p-4">
+          <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex flex-col space-y-4 sm:flex-row sm:justify-between sm:items-start sm:space-y-0 mb-4 sm:mb-6">
+              <div className="flex items-center space-x-3 sm:space-x-4">
                 <img 
                   src={selectedStudent.photo} 
                   alt={selectedStudent.name}
-                  className="w-20 h-20 rounded-full object-cover border-4 border-amber-400 shadow-lg"
+                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-4 border-amber-400 shadow-lg"
                 />
                 <div>
-                  <h2 className="text-2xl font-bold text-secondary-900">{selectedStudent.name}</h2>
-                  <p className="text-secondary-600">{selectedStudent.class}</p>
+                  <h2 className="text-lg sm:text-2xl font-bold text-secondary-900">{selectedStudent.name}</h2>
+                  <p className="text-sm sm:text-base text-secondary-600">{selectedStudent.class}</p>
                   <div className="flex items-center mt-2 space-x-2">
-                    <div className={`px-3 py-1 rounded-full text-white font-bold ${getRankBackgroundColor(selectedStudent.rank)}`}>
+                    <div className={`px-2 sm:px-3 py-1 rounded-full text-white font-bold text-xs sm:text-sm ${getRankBackgroundColor(selectedStudent.rank)}`}>
                       Rank #{selectedStudent.rank}
                     </div>
                     <div className="flex space-x-1">
                       {selectedStudent.badges.map((badge: string, idx: number) => (
-                        <span key={idx} className="text-lg">{badge}</span>
+                        <span key={idx} className="text-sm sm:text-lg">{badge}</span>
                       ))}
                     </div>
                   </div>
                 </div>
               </div>
-              <Button variant="outline" onClick={() => setSelectedStudent(null)}>
+              <Button variant="outline" onClick={() => setSelectedStudent(null)} className="w-full sm:w-auto">
                 Close
               </Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Performance Stats</CardTitle>
+                <CardHeader className="p-3 sm:p-4">
+                  <CardTitle className="text-sm sm:text-base">Performance Stats</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
+                <CardContent className="p-3 sm:p-4">
+                  <div className="space-y-3 sm:space-y-4">
                     <div>
-                      <p className="text-sm font-medium text-secondary-500">Points This Month</p>
-                      <p className="text-3xl font-bold text-amber-600">{selectedStudent.points}</p>
+                      <p className="text-xs sm:text-sm font-medium text-secondary-500">Points This Month</p>
+                      <p className="text-2xl sm:text-3xl font-bold text-amber-600">{selectedStudent.points}</p>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-secondary-500">Overall Accuracy</p>
-                      <p className="text-3xl font-bold text-green-600">{selectedStudent.accuracy}%</p>
+                      <p className="text-xs sm:text-sm font-medium text-secondary-500">Overall Accuracy</p>
+                      <p className="text-2xl sm:text-3xl font-bold text-green-600">{selectedStudent.accuracy}%</p>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-secondary-500">Current Streak</p>
-                      <p className="text-3xl font-bold text-orange-600">{selectedStudent.streak} days</p>
+                      <p className="text-xs sm:text-sm font-medium text-secondary-500">Current Streak</p>
+                      <p className="text-2xl sm:text-3xl font-bold text-orange-600">{selectedStudent.streak} days</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Learning Progress</CardTitle>
+                <CardHeader className="p-3 sm:p-4">
+                  <CardTitle className="text-sm sm:text-base">Learning Progress</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
+                <CardContent className="p-3 sm:p-4">
+                  <div className="space-y-3 sm:space-y-4">
                     <div>
-                      <p className="text-sm font-medium text-secondary-500">Lessons Completed</p>
-                      <p className="text-3xl font-bold text-blue-600">{selectedStudent.lessonsCompleted}</p>
+                      <p className="text-xs sm:text-sm font-medium text-secondary-500">Lessons Completed</p>
+                      <p className="text-2xl sm:text-3xl font-bold text-blue-600">{selectedStudent.lessonsCompleted}</p>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-secondary-500">Time Spent</p>
-                      <p className="text-3xl font-bold text-purple-600">{selectedStudent.timeSpent}</p>
+                      <p className="text-xs sm:text-sm font-medium text-secondary-500">Time Spent</p>
+                      <p className="text-2xl sm:text-3xl font-bold text-purple-600">{selectedStudent.timeSpent}</p>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-secondary-500">Total XP</p>
-                      <p className="text-3xl font-bold text-indigo-600">{selectedStudent.totalXP.toLocaleString()}</p>
+                      <p className="text-xs sm:text-sm font-medium text-secondary-500">Total XP</p>
+                      <p className="text-2xl sm:text-3xl font-bold text-indigo-600">{selectedStudent.totalXP.toLocaleString()}</p>
                     </div>
                   </div>
                 </CardContent>
