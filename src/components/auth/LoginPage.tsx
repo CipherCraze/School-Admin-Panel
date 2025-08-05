@@ -120,6 +120,12 @@ export function LoginPage() {
                   <span className="font-mono text-secondary-800">password</span>
                 </div>
               </div>
+              <div className="mt-3 p-2 bg-blue-50 rounded-lg border border-blue-200">
+                <p className="text-xs text-blue-700">
+                  <strong>super@admin.com</strong> → Full Admin Panel with all schools<br />
+                  <strong>school@admin.com</strong> → School-specific dashboard
+                </p>
+              </div>
             </div>
           </CardContent>
         </Card>

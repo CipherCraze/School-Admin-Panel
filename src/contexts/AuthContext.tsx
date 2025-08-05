@@ -44,7 +44,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const mockUser: User = {
         id: '1',
         email,
-        name: 'Admin User',
+        name: email.includes('super') ? 'Super Admin' : 'School Admin',
         role: email.includes('super') ? 'super_admin' : 'school_admin',
         schoolId: email.includes('super') ? undefined : 'school-1'
       }

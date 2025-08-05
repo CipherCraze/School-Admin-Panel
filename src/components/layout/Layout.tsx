@@ -10,7 +10,8 @@ import {
   Cog6ToothIcon,
   SparklesIcon,
   Bars3Icon,
-  XMarkIcon
+  XMarkIcon,
+  TrophyIcon
 } from '@heroicons/react/24/outline'
 
 interface LayoutProps {
@@ -27,13 +28,29 @@ export function Layout({ children }: LayoutProps) {
     navigate('/login')
   }
 
-  const navigation = [
-    { name: 'Dashboard', href: '/', icon: HomeIcon },
-    { name: 'Schools', href: '/schools', icon: AcademicCapIcon },
-    { name: 'Students', href: '/students', icon: UserGroupIcon },
-    { name: 'Analytics', href: '/analytics', icon: ChartBarIcon },
-    { name: 'Settings', href: '/settings', icon: Cog6ToothIcon },
-  ]
+  // Role-based navigation
+  const getNavigationForRole = () => {
+    if (user?.role === 'super_admin') {
+      return [
+        { name: 'Dashboard', href: '/', icon: HomeIcon },
+        { name: 'Schools', href: '/schools', icon: AcademicCapIcon },
+        { name: 'Students', href: '/students', icon: UserGroupIcon },
+        { name: 'Analytics', href: '/analytics', icon: ChartBarIcon },
+        { name: 'Settings', href: '/settings', icon: Cog6ToothIcon },
+      ]
+    } else if (user?.role === 'school_admin') {
+      return [
+        { name: 'Dashboard', href: '/', icon: HomeIcon },
+        { name: 'Leaderboard', href: '/leaderboard', icon: TrophyIcon },
+        { name: 'Students', href: '/students', icon: UserGroupIcon },
+        { name: 'Analytics', href: '/analytics', icon: ChartBarIcon },
+        { name: 'Settings', href: '/settings', icon: Cog6ToothIcon },
+      ]
+    }
+    return []
+  }
+
+  const navigation = getNavigationForRole()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-secondary-50 via-white to-primary-50">
@@ -124,7 +141,12 @@ export function Layout({ children }: LayoutProps) {
               </div>
               <div className="ml-3">
                 <p className="text-sm font-semibold text-secondary-900">{user?.name}</p>
-                <p className="text-xs text-secondary-500 capitalize">{user?.role.replace('_', ' ')}</p>
+                <p className="text-xs text-secondary-500 capitalize">
+                  {user?.role === 'super_admin' ? 'Super Admin' : 'School Admin'}
+                </p>
+                {user?.role === 'school_admin' && (
+                  <p className="text-xs text-primary-600 font-medium">Greenwood Elementary</p>
+                )}
               </div>
             </div>
             <button
