@@ -4,14 +4,11 @@ import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 import { 
   TrophyIcon, 
-  StarIcon,
   FireIcon,
-  ChartBarIcon,
   MagnifyingGlassIcon,
   FunnelIcon,
   EyeIcon
 } from '@heroicons/react/24/outline'
-import { useAuth } from '../../contexts/AuthContext'
 
 // Enhanced leaderboard data with more students
 const extendedLeaderboardData = [
@@ -147,7 +144,6 @@ const extendedLeaderboardData = [
 ]
 
 export function LeaderboardPage() {
-  const { user } = useAuth()
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedClass, setSelectedClass] = useState<string>('all')
   const [timeFrame, setTimeFrame] = useState<string>('monthly')
@@ -237,7 +233,7 @@ export function LeaderboardPage() {
                   <p className="text-xs opacity-90 mb-2">{filteredStudents[0].class}</p>
                   <p className="text-xl font-bold">{filteredStudents[0].points} pts</p>
                   <div className="flex justify-center mt-2 space-x-1">
-                    {filteredStudents[0].badges.map((badge, idx) => (
+                    {filteredStudents[0].badges.map((badge: string, idx: number) => (
                       <span key={idx} className="text-sm">{badge}</span>
                     ))}
                   </div>
@@ -368,7 +364,7 @@ export function LeaderboardPage() {
                   {/* Badges */}
                   <div className="flex items-center mt-2 space-x-2">
                     <div className="flex space-x-1">
-                      {student.badges.map((badge, idx) => (
+                      {student.badges.map((badge: string, idx: number) => (
                         <span key={idx} className="text-sm">{badge}</span>
                       ))}
                     </div>
@@ -446,7 +442,7 @@ export function LeaderboardPage() {
                       Rank #{selectedStudent.rank}
                     </div>
                     <div className="flex space-x-1">
-                      {selectedStudent.badges.map((badge, idx) => (
+                      {selectedStudent.badges.map((badge: string, idx: number) => (
                         <span key={idx} className="text-lg">{badge}</span>
                       ))}
                     </div>

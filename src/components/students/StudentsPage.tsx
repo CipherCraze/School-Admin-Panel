@@ -8,61 +8,281 @@ import type { Student } from '../../types'
 const mockStudents: Student[] = [
   {
     id: '1',
-    name: 'Alex Johnson',
-    class: 'Class 5',
+    name: 'Ahan Kumar',
+    class: 'Class 8',
     schoolId: '1',
     enrollmentDate: '2024-01-15',
     performance: {
-      accuracyPercentage: 88,
-      lessonsCompleted: 45,
-      timeSpentMinutes: 1250,
-      xpPoints: 2840,
+      accuracyPercentage: 96,
+      lessonsCompleted: 68,
+      timeSpentMinutes: 8700, // 145 hrs
+      xpPoints: 830,
       skillAreas: {
-        vocabulary: 85,
-        grammar: 90,
-        pronunciation: 88,
-        listening: 92,
-        speaking: 84
+        vocabulary: 98,
+        grammar: 96,
+        pronunciation: 94,
+        listening: 97,
+        speaking: 95
       }
     }
   },
   {
     id: '2',
-    name: 'Sarah Chen',
-    class: 'Class 4',
+    name: 'Hvff',
+    class: 'Class 7',
     schoolId: '1',
     enrollmentDate: '2024-01-20',
     performance: {
-      accuracyPercentage: 92,
-      lessonsCompleted: 52,
-      timeSpentMinutes: 1580,
-      xpPoints: 3240,
+      accuracyPercentage: 94,
+      lessonsCompleted: 45,
+      timeSpentMinutes: 5880, // 98 hrs
+      xpPoints: 295,
       skillAreas: {
-        vocabulary: 94,
-        grammar: 91,
-        pronunciation: 89,
+        vocabulary: 96,
+        grammar: 94,
+        pronunciation: 92,
         listening: 95,
-        speaking: 90
+        speaking: 93
       }
     }
   },
   {
     id: '3',
-    name: 'Marcus Williams',
-    class: 'Class 3',
-    schoolId: '2',
-    enrollmentDate: '2024-02-05',
+    name: 'Flower Girl',
+    class: 'Class 6',
+    schoolId: '1',
+    enrollmentDate: '2024-02-01',
     performance: {
-      accuracyPercentage: 76,
-      lessonsCompleted: 32,
-      timeSpentMinutes: 890,
-      xpPoints: 1920,
+      accuracyPercentage: 93,
+      lessonsCompleted: 38,
+      timeSpentMinutes: 5100, // 85 hrs
+      xpPoints: 190,
       skillAreas: {
-        vocabulary: 78,
-        grammar: 75,
-        pronunciation: 74,
-        listening: 80,
-        speaking: 72
+        vocabulary: 95,
+        grammar: 93,
+        pronunciation: 91,
+        listening: 94,
+        speaking: 92
+      }
+    }
+  },
+  {
+    id: '4',
+    name: '12 June Child Test',
+    class: 'Class 5',
+    schoolId: '1',
+    enrollmentDate: '2024-06-12',
+    performance: {
+      accuracyPercentage: 92,
+      lessonsCompleted: 32,
+      timeSpentMinutes: 4680, // 78 hrs
+      xpPoints: 165,
+      skillAreas: {
+        vocabulary: 94,
+        grammar: 92,
+        pronunciation: 90,
+        listening: 93,
+        speaking: 91
+      }
+    }
+  },
+  {
+    id: '5',
+    name: 'Hcdff',
+    class: 'Class 4',
+    schoolId: '1',
+    enrollmentDate: '2024-02-15',
+    performance: {
+      accuracyPercentage: 91,
+      lessonsCompleted: 30,
+      timeSpentMinutes: 4320, // 72 hrs
+      xpPoints: 160,
+      skillAreas: {
+        vocabulary: 93,
+        grammar: 91,
+        pronunciation: 89,
+        listening: 92,
+        speaking: 90
+      }
+    }
+  },
+  {
+    id: '6',
+    name: 'Eva',
+    class: 'Class 3',
+    schoolId: '1',
+    enrollmentDate: '2024-02-20',
+    performance: {
+      accuracyPercentage: 90,
+      lessonsCompleted: 28,
+      timeSpentMinutes: 4080, // 68 hrs
+      xpPoints: 145,
+      skillAreas: {
+        vocabulary: 92,
+        grammar: 90,
+        pronunciation: 88,
+        listening: 91,
+        speaking: 89
+      }
+    }
+  },
+  {
+    id: '7',
+    name: 'Sophia Kim',
+    class: 'Class 2',
+    schoolId: '1',
+    enrollmentDate: '2024-02-25',
+    performance: {
+      accuracyPercentage: 89,
+      lessonsCompleted: 26,
+      timeSpentMinutes: 3900, // 65 hrs
+      xpPoints: 138,
+      skillAreas: {
+        vocabulary: 91,
+        grammar: 89,
+        pronunciation: 87,
+        listening: 90,
+        speaking: 88
+      }
+    }
+  },
+  {
+    id: '8',
+    name: 'James Wilson',
+    class: 'Class 6',
+    schoolId: '1',
+    enrollmentDate: '2024-03-01',
+    performance: {
+      accuracyPercentage: 88,
+      lessonsCompleted: 24,
+      timeSpentMinutes: 3480, // 58 hrs
+      xpPoints: 132,
+      skillAreas: {
+        vocabulary: 90,
+        grammar: 88,
+        pronunciation: 86,
+        listening: 89,
+        speaking: 87
+      }
+    }
+  },
+  {
+    id: '9',
+    name: 'Olivia Davis',
+    class: 'Class 5',
+    schoolId: '1',
+    enrollmentDate: '2024-03-05',
+    performance: {
+      accuracyPercentage: 87,
+      lessonsCompleted: 22,
+      timeSpentMinutes: 3300, // 55 hrs
+      xpPoints: 128,
+      skillAreas: {
+        vocabulary: 89,
+        grammar: 87,
+        pronunciation: 85,
+        listening: 88,
+        speaking: 86
+      }
+    }
+  },
+  {
+    id: '10',
+    name: 'Liam Garcia',
+    class: 'Class 1',
+    schoolId: '1',
+    enrollmentDate: '2024-03-10',
+    performance: {
+      accuracyPercentage: 86,
+      lessonsCompleted: 20,
+      timeSpentMinutes: 3120, // 52 hrs
+      xpPoints: 120,
+      skillAreas: {
+        vocabulary: 88,
+        grammar: 86,
+        pronunciation: 84,
+        listening: 87,
+        speaking: 85
+      }
+    }
+  },
+  {
+    id: '11',
+    name: 'Alex Thompson',
+    class: 'Class 7',
+    schoolId: '1',
+    enrollmentDate: '2024-03-01',
+    performance: {
+      accuracyPercentage: 85,
+      lessonsCompleted: 25,
+      timeSpentMinutes: 3480, // 58 hrs
+      xpPoints: 118,
+      skillAreas: {
+        vocabulary: 87,
+        grammar: 85,
+        pronunciation: 83,
+        listening: 86,
+        speaking: 84
+      }
+    }
+  },
+  {
+    id: '12',
+    name: 'Maya Singh',
+    class: 'Class 6',
+    schoolId: '1',
+    enrollmentDate: '2024-03-05',
+    performance: {
+      accuracyPercentage: 84,
+      lessonsCompleted: 23,
+      timeSpentMinutes: 3300, // 55 hrs
+      xpPoints: 115,
+      skillAreas: {
+        vocabulary: 86,
+        grammar: 84,
+        pronunciation: 82,
+        listening: 85,
+        speaking: 83
+      }
+    }
+  },
+  {
+    id: '13',
+    name: 'Ava Martinez',
+    class: 'Class 3',
+    schoolId: '1',
+    enrollmentDate: '2024-01-15',
+    performance: {
+      accuracyPercentage: 85,
+      lessonsCompleted: 45,
+      timeSpentMinutes: 6480, // 108 hrs
+      xpPoints: 4100,
+      skillAreas: {
+        vocabulary: 87,
+        grammar: 85,
+        pronunciation: 83,
+        listening: 86,
+        speaking: 84
+      }
+    }
+  },
+  {
+    id: '14',
+    name: 'Noah Thompson',
+    class: 'Class 4',
+    schoolId: '1',
+    enrollmentDate: '2024-01-20',
+    performance: {
+      accuracyPercentage: 83,
+      lessonsCompleted: 42,
+      timeSpentMinutes: 6120, // 102 hrs
+      xpPoints: 3950,
+      skillAreas: {
+        vocabulary: 85,
+        grammar: 83,
+        pronunciation: 81,
+        listening: 84,
+        speaking: 82
       }
     }
   }
