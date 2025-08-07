@@ -1,4 +1,12 @@
 import { useState } from 'react'
+// Learning levels for random assignment
+const learningLevels = [
+  { name: 'Expert', icon: '👑', color: 'bg-gradient-to-r from-purple-500 to-indigo-600 text-white' },
+  { name: 'Advanced', icon: '🌟', color: 'bg-gradient-to-r from-green-500 to-emerald-600 text-white' },
+  { name: 'Intermediate', icon: '📚', color: 'bg-gradient-to-r from-blue-500 to-cyan-600 text-white' },
+  { name: 'Beginner', icon: '🌱', color: 'bg-gradient-to-r from-yellow-500 to-orange-600 text-white' },
+  { name: 'Foundation', icon: '🎯', color: 'bg-gradient-to-r from-gray-500 to-slate-600 text-white' }
+]
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
@@ -491,7 +499,11 @@ export function SchoolAdminDashboard() {
                         size="sm" 
                         variant="outline" 
                         className="w-full mt-3 text-xs hover:scale-105 transition-transform"
-                        onClick={() => setSelectedStudent(student)}
+                        onClick={() => {
+                          // Assign a random learning level on view
+                          const randomLevel = learningLevels[Math.floor(Math.random() * learningLevels.length)];
+                          setSelectedStudent({ ...student, assignedLevel: randomLevel });
+                        }}
                       >
                         <EyeIcon className="w-3 h-3 mr-1" />
                         View Profile
@@ -590,8 +602,12 @@ export function SchoolAdminDashboard() {
                     </div>
                     <Button 
                       size="sm" 
-                      variant="outline"
-                      onClick={() => setSelectedStudent(student)}
+                      variant="outline" 
+                      onClick={() => {
+                        // Assign a random learning level on view
+                        const randomLevel = learningLevels[Math.floor(Math.random() * learningLevels.length)];
+                        setSelectedStudent({ ...student, assignedLevel: randomLevel });
+                      }}
                     >
                       <EyeIcon className="w-4 h-4" />
                     </Button>
@@ -696,18 +712,29 @@ export function SchoolAdminDashboard() {
                       </div>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-secondary-500">Progress Level</p>
+                      <p className="text-sm font-medium text-secondary-500">Selected Learning Level</p>
                       <div className="mt-2">
-                        <div className="flex justify-between text-xs text-secondary-600 mb-1">
-                          <span>Beginner</span>
-                          <span>Advanced</span>
-                        </div>
-                        <div className="w-full bg-secondary-200 rounded-full h-2">
-                          <div 
-                            className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-1000"
-                            style={{ width: `${selectedStudent.accuracy}%` }}
-                          ></div>
-                        </div>
+                        {selectedStudent.assignedLevel ? (
+                          <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold shadow-lg ${selectedStudent.assignedLevel.color}`}>
+                            <span className="mr-2 text-base">{selectedStudent.assignedLevel.icon}</span>
+                            {selectedStudent.assignedLevel.name}
+                          </div>
+                        ) : (
+                          (() => {
+                            const level = selectedStudent.accuracy >= 95 ? 'Expert' :
+                                        selectedStudent.accuracy >= 85 ? 'Advanced' :
+                                        selectedStudent.accuracy >= 70 ? 'Intermediate' :
+                                        selectedStudent.accuracy >= 50 ? 'Beginner' : 'Foundation';
+                            const levelObj = learningLevels.find(l => l.name === level)!;
+                            return (
+                              <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold shadow-lg ${levelObj.color}`}>
+                                <span className="mr-2 text-base">{levelObj.icon}</span>
+                                {levelObj.name}
+                              </div>
+                            );
+                          })()
+                        )}
+                        
                       </div>
                     </div>
                   </div>
